@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Order Placed — Survey</title>
+<style>
+  body{font-family:sans-serif;background:#0d1f1a;color:#ccc;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;}
+  .box{text-align:center;}
+  p{font-size:13px;margin-top:8px;}
+</style>
+</head>
+<body>
+<div class="box">
+  <p>Loading survey…</p>
+</div>
+<script>
+  const oid = new URLSearchParams(window.location.search).get('oid') || '';
+  window.location.replace('survey_order_placed.html' + (oid ? '?oid=' + encodeURIComponent(oid) : ''));
+</script>
+</body>
+</html>

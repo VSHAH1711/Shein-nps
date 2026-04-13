@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Shein India — Delivery Feedback</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:#0d1f1a;min-height:100vh;overflow-x:hidden;display:flex;align-items:flex-end;justify-content:center;}
+.bg-blob{position:fixed;border-radius:50%;opacity:.15;pointer-events:none;z-index:0;animation:bf 7s ease-in-out infinite;}
+.b1{width:320px;height:320px;top:-80px;right:-70px;background:#06d6a0;}
+.b2{width:220px;height:220px;bottom:60px;left:-70px;background:#118ab2;animation-delay:3.5s;}
+@keyframes bf{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-18px) scale(1.05);}}
+.conf-wrap{position:fixed;top:0;left:0;width:100%;height:200px;pointer-events:none;z-index:998;overflow:hidden;}
+.cpc{position:absolute;width:7px;height:7px;top:-10px;animation:cfall linear forwards;}
+@keyframes cfall{to{transform:translateY(220px) rotate(640deg);opacity:0;}}
+.sheet{width:100%;max-width:520px;background:#f3fff8;border-radius:26px 26px 0 0;padding:20px 18px 36px;position:relative;z-index:10;animation:slideUp .4s cubic-bezier(.34,1.56,.64,1) both;max-height:92vh;overflow-y:auto;}
+@keyframes slideUp{from{transform:translateY(100%);opacity:0;}to{transform:none;opacity:1;}}
+.handle{width:40px;height:4px;border-radius:99px;background:#c8e8d8;margin:0 auto 16px;}
+.ctx-banner{display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:10px 14px;margin-bottom:16px;border:1.5px solid #c8f0e4;}
+.ctx-icon{font-size:24px;flex-shrink:0;}
+.ctx-text{font-size:12px;color:#888;line-height:1.45;}
+.ctx-text strong{color:#1a1a2e;font-size:13px;display:block;margin-bottom:1px;}
+.logo-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:#1a1a2e;}
+.logo span{color:#06d6a0;}
+.logo-tagline{font-size:11px;color:#aaa;}
+.card{background:#fff;border-radius:22px;padding:22px 18px;border:1.5px solid #d0f0e4;margin-bottom:12px;position:relative;}
+.tp-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 12px;border-radius:99px;font-size:11px;font-weight:500;margin-bottom:10px;background:#e8f8f2;color:#0a7a50;}
+.survey-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#1a1a2e;line-height:1.25;margin-bottom:4px;}
+.survey-sub{font-size:12px;color:#bbb;margin-bottom:14px;}
+.nps-core-q{font-size:13px;font-weight:500;color:#1a1a2e;margin-bottom:10px;padding:11px 13px;background:#fafafa;border-radius:12px;border:1.5px solid #f0f0f0;line-height:1.5;}
+.nps-core-hint{font-size:10px;color:#ccc;display:block;margin-top:3px;font-weight:400;}
+.nps-label-row{display:flex;justify-content:space-between;margin-bottom:5px;}
+.nps-lbl{font-size:10px;color:#ccc;}
+.nps-scores{display:flex;gap:3px;margin-bottom:16px;}
+.sc-btn{flex:1;height:40px;border-radius:10px;border:1.5px solid #f0f0f0;background:#fafafa;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#bbb;transition:all .16s cubic-bezier(.34,1.56,.64,1);padding:0;}
+.sc-btn:hover{transform:scale(1.1) translateY(-2px);}
+.sc-btn.sel{transform:scale(1.12) translateY(-3px);color:#fff;border-color:transparent;box-shadow:0 5px 14px rgba(0,0,0,.14);}
+.divider{height:1px;background:#e8f5ef;margin:14px 0 12px;}
+.section-label{font-size:11px;color:#bbb;margin-bottom:7px;font-weight:500;letter-spacing:.3px;}
+.qtag-section{margin-bottom:10px;animation:panelIn .3s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes panelIn{from{opacity:0;transform:translateY(22px) scale(.97);}to{opacity:1;transform:none;}}
+.qtag-wrap{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px;}
+.qtag{padding:6px 13px;border-radius:99px;border:1.5px solid #f0f0f0;background:#fafafa;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;color:#666;transition:all .17s cubic-bezier(.34,1.56,.64,1);user-select:none;}
+.qtag:hover{border-color:#06d6a0;color:#06d6a0;transform:scale(1.05);}
+.qtag.sel{background:#06d6a0;border-color:#06d6a0;color:#fff;transform:scale(1.05);}
+.qtag.sel-green{background:#06d6a0!important;border-color:#06d6a0!important;color:#fff!important;}
+.qtag.sel-amber{background:#f59e0b!important;border-color:#f59e0b!important;color:#fff!important;}
+.qtag.sel-red{background:#ef4444!important;border-color:#ef4444!important;color:#fff!important;}
+.tag-hint{font-size:10px;color:#b0d0c0;margin-bottom:6px;font-style:italic;}
+.comment-box{width:100%;min-height:72px;padding:11px 13px;border:1.5px solid #f0f0f0;border-radius:14px;font-size:13px;font-family:'DM Sans',sans-serif;color:#1a1a2e;background:#fafafa;resize:none;line-height:1.55;transition:border-color .18s;margin-bottom:4px;}
+.comment-box:focus{outline:none;border-color:#06d6a0;background:#fff;}
+.comment-box::placeholder{color:#ccc;}
+.char-count{font-size:10px;color:#ddd;text-align:right;margin-bottom:14px;}
+.submit-btn{width:100%;height:46px;border-radius:14px;border:none;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;cursor:pointer;letter-spacing:.3px;transition:all .2s cubic-bezier(.34,1.56,.64,1);opacity:.4;pointer-events:none;background:linear-gradient(135deg,#06d6a0,#118ab2);}
+.submit-btn.ready{opacity:1;pointer-events:auto;}
+.submit-btn.ready:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.17);}
+.submit-btn.loading{opacity:.7;pointer-events:none;}
+.done-screen{display:none;text-align:center;padding:28px 12px;}
+.done-screen.active{display:block;animation:panelIn .4s cubic-bezier(.34,1.56,.64,1) both;}
+.done-icon{font-size:62px;animation:tpop .65s cubic-bezier(.34,1.56,.64,1) both;margin-bottom:10px;}
+@keyframes tpop{from{transform:scale(0) rotate(-18deg);opacity:0;}to{transform:none;opacity:1;}}
+.done-title{font-family:'Syne',sans-serif;font-size:23px;font-weight:800;color:#1a1a2e;margin-bottom:6px;}
+.done-sub{font-size:13px;color:#aaa;line-height:1.6;margin-bottom:18px;}
+.reward-pill{display:inline-block;background:linear-gradient(135deg,#e8fff4,#e8f8ff);border:1.5px solid #06d6a0;border-radius:16px;padding:14px 28px;margin-bottom:8px;}
+.reward-code{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#1a1a2e;letter-spacing:3px;}
+.reward-fine{font-size:11px;color:#bbb;margin-top:3px;}
+.xp-float{position:fixed;pointer-events:none;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#06d6a0;z-index:999;animation:xpup 1.1s ease-out forwards;}
+@keyframes xpup{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-65px) scale(1.3);}}
+</style>
+</head>
+<body>
+<div class="bg-blob b1"></div>
+<div class="bg-blob b2"></div>
+<div class="conf-wrap" id="confWrap"></div>
+
+<div class="sheet">
+  <div class="handle"></div>
+  <div class="logo-bar">
+    <div class="logo">SH<span>EI</span>N</div>
+    <div class="logo-tagline">How are we doing? 👀</div>
+  </div>
+  <div class="ctx-banner">
+    <div class="ctx-icon">📦</div>
+    <div class="ctx-text"><strong>Your order was delivered!</strong>You have it in your hands — tell us everything?</div>
+  </div>
+
+  <div id="panel">
+    <div class="card">
+      <div class="tp-tag">📦 Order delivered</div>
+      <div class="survey-title">How was the delivery and the product?</div>
+      <div class="survey-sub">Takes ~15 secs ⚡ your honest take matters</div>
+      <div class="nps-core-q">On a scale of 0–10, how likely are you to recommend Shein to a friend or family member?<span class="nps-core-hint">0 = Not at all likely &nbsp;·&nbsp; 10 = Extremely likely</span></div>
+      <div class="nps-label-row"><span class="nps-lbl">0 😤 Not likely</span><span class="nps-lbl">Absolutely 😍 10</span></div>
+      <div class="nps-scores" id="scores"></div>
+      <div class="divider"></div>
+
+      <div id="tags-det" class="qtag-section" style="display:none;">
+        <div class="section-label">WHAT DISAPPOINTED YOU? (tap a tag to add it below)</div>
+        <div class="qtag-wrap">
+          <button class="qtag" onclick="toggleTag(this,'Delivery took too long')">⏰ Delivery took too long</button>
+          <button class="qtag" onclick="toggleTag(this,'Packaging was damaged')">📦 Packaging was damaged</button>
+          <button class="qtag" onclick="toggleTag(this,'Wrong item delivered')">❌ Wrong item delivered</button>
+          <button class="qtag" onclick="toggleTag(this,'Item was missing')">🔍 Item was missing</button>
+          <button class="qtag" onclick="toggleTag(this,'Fabric quality was poor')">🧵 Fabric quality was poor</button>
+          <button class="qtag" onclick="toggleTag(this,'Product did not match the photos')">📸 Product did not match the photos</button>
+          <button class="qtag" onclick="toggleTag(this,'Sizing was way off')">📏 Sizing was way off</button>
+          <button class="qtag" onclick="toggleTag(this,'Stitching was bad')">🪡 Stitching was bad</button>
+        </div>
+      </div>
+      <div id="tags-pas" class="qtag-section" style="display:none;">
+        <div class="section-label">WHAT COULD HAVE BEEN BETTER? (tap a tag to add it below)</div>
+        <div class="qtag-wrap">
+          <button class="qtag" onclick="toggleTag(this,'Delivery could be a bit faster')">⏩ Delivery could be a bit faster</button>
+          <button class="qtag" onclick="toggleTag(this,'Packaging could be better')">📦 Packaging could be better</button>
+          <button class="qtag" onclick="toggleTag(this,'Fabric felt slightly cheap')">🧵 Fabric felt slightly cheap</button>
+          <button class="qtag" onclick="toggleTag(this,'Colors were slightly off')">🎨 Colors were slightly off</button>
+          <button class="qtag" onclick="toggleTag(this,'Sizing runs small or large')">📐 Sizing runs small or large</button>
+          <button class="qtag" onclick="toggleTag(this,'More tracking updates needed')">📲 More tracking updates needed</button>
+        </div>
+      </div>
+      <div id="tags-pro" class="qtag-section" style="display:none;">
+        <div class="section-label">WHAT IMPRESSED YOU? 💚 (tap a tag to add it below)</div>
+        <div class="qtag-wrap">
+          <button class="qtag" onclick="toggleTag(this,'Super fast delivery')">🚀 Super fast delivery</button>
+          <button class="qtag" onclick="toggleTag(this,'Packaging was perfect')">📦 Packaging was perfect</button>
+          <button class="qtag" onclick="toggleTag(this,'Great fabric quality')">🧵 Great fabric quality</button>
+          <button class="qtag" onclick="toggleTag(this,'Looked exactly like the photos')">✅ Looked exactly like the photos</button>
+          <button class="qtag" onclick="toggleTag(this,'Fit was perfect')">🎯 Fit was perfect</button>
+          <button class="qtag" onclick="toggleTag(this,'Loved the finish and detailing')">✨ Loved the finish and detailing</button>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:6px;">YOUR THOUGHTS (optional)</div>
+      <div class="tag-hint">✦ Tap any tag above to add it here, then type your raw thoughts</div>
+      <textarea class="comment-box" id="comment" placeholder="Tap tags above or write freely... we are all ears 👂" oninput="updateChar()"></textarea>
+      <div class="char-count" id="charCount">0 / 300</div>
+      <button class="submit-btn" id="submitBtn" onclick="submitSurvey()">Send feedback ✨</button>
+    </div>
+  </div>
+
+  <div class="done-screen" id="doneScreen">
+    <div class="done-icon">📦</div>
+    <div class="done-title">Feedback received! ✅</div>
+    <div class="done-sub">Your delivery and product experience just helped us level up. Grab your reward 🎁</div>
+    <div class="reward-pill">
+      <div class="reward-code">DELIVER10</div>
+      <div class="reward-fine">10% off your next order • Valid 5 days</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── CONFIG — paste your Apps Script Web App URL below ───────────────────────
+const WEBHOOK_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+// ─────────────────────────────────────────────────────────────────────────────
+
+const _orderId = new URLSearchParams(window.location.search).get('oid') || 'unknown';
+let currentScore = null;
+
+(function buildScores(){
+  const wrap = document.getElementById('scores');
+  for(let i = 0; i <= 10; i++){
+    const b = document.createElement('button');
+    b.className='sc-btn'; b.textContent=i; b.dataset.v=i;
+    b.onclick = () => selectScore(i, b);
+    wrap.appendChild(b);
+  }
+})();
+
+function scoreColor(v){ return v<=6?'#ef4444':v<=8?'#f59e0b':'#10b981'; }
+
+function selectScore(val, btn){
+  currentScore = val;
+  document.getElementById('scores').querySelectorAll('.sc-btn').forEach(b => {
+    const bv = +b.dataset.v;
+    if(bv<=val){ b.classList.add('sel'); b.style.background=scoreColor(bv); b.style.color='#fff'; }
+    else { b.classList.remove('sel'); b.style.background=''; b.style.color=''; }
+  });
+  ['det','pas','pro'].forEach(t => { document.getElementById('tags-'+t).style.display='none'; });
+  document.querySelectorAll('.qtag').forEach(t => t.classList.remove('sel','sel-green','sel-amber','sel-red'));
+  const section = val<=6?'det':val<=8?'pas':'pro';
+  document.getElementById('tags-'+section).style.display='block';
+  document.getElementById('submitBtn').classList.add('ready');
+  spawnXP(btn, '+10 XP');
+}
+
+function toggleTag(btn, tagText){
+  if(currentScore===null) return;
+  const wasSelected = btn.classList.contains('sel');
+  btn.classList.toggle('sel');
+  if(!wasSelected){
+    if(currentScore>=9) btn.classList.add('sel-green');
+    else if(currentScore>=7) btn.classList.add('sel-amber');
+    else btn.classList.add('sel-red');
+  } else { btn.classList.remove('sel-green','sel-amber','sel-red'); }
+  const box = document.getElementById('comment');
+  if(!wasSelected){
+    const cur = box.value.trim();
+    box.value = cur==='' ? tagText+' — ' : cur.replace(/[—,\s]+$/,'')+', '+tagText+' — ';
+    box.focus(); box.setSelectionRange(box.value.length, box.value.length);
+  } else {
+    let val = box.value;
+    [', '+tagText+' — ', tagText+' — ', ', '+tagText, tagText+', ', tagText].forEach(p => {
+      if(val.includes(p)){ val=val.replace(p,''); }
+    });
+    box.value = val;
+  }
+  updateChar();
+}
+
+function updateChar(){
+  const ta = document.getElementById('comment');
+  if(ta.value.length>300) ta.value=ta.value.substring(0,300);
+  document.getElementById('charCount').textContent=ta.value.length+' / 300';
+}
+
+function spawnXP(el, txt){
+  const r=el.getBoundingClientRect();
+  const fp=document.createElement('div'); fp.className='xp-float'; fp.textContent=txt;
+  fp.style.left=(r.left+r.width/2-24)+'px'; fp.style.top=(r.top-8)+'px';
+  document.body.appendChild(fp); setTimeout(()=>fp.remove(),1200);
+}
+
+function launchConfetti(){
+  const colors=['#06d6a0','#118ab2','#ffd166','#ff6b9d','#ff8e53','#a29bfe'];
+  const wrap=document.getElementById('confWrap'); wrap.innerHTML='';
+  for(let i=0;i<55;i++){
+    const c=document.createElement('div'); c.className='cpc';
+    c.style.left=Math.random()*100+'%';
+    c.style.background=colors[Math.floor(Math.random()*colors.length)];
+    c.style.animationDuration=(.65+Math.random()*1.3)+'s';
+    c.style.animationDelay=(Math.random()*.6)+'s';
+    c.style.borderRadius=Math.random()>.5?'50%':'3px';
+    wrap.appendChild(c);
+  }
+}
+
+async function submitSurvey(){
+  if(currentScore===null) return;
+  const btn=document.getElementById('submitBtn');
+  btn.classList.remove('ready'); btn.classList.add('loading');
+  btn.textContent='Sending... ⏳';
+
+  const selectedTags=[...document.querySelectorAll('.qtag.sel')].map(t=>t.textContent.trim());
+  const payload={
+    order_id: _orderId,
+    survey_type: 'order_delivered',
+    score: currentScore,
+    tags: selectedTags.join(', '),
+    comment: document.getElementById('comment').value,
+    submitted_at: new Date().toISOString()
+  };
+
+  try {
+    await fetch(WEBHOOK_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+  } catch(e){ console.warn('Submission error:', e); }
+
+  spawnXP(btn, '+50 XP 🎉');
+  document.getElementById('panel').style.display='none';
+  document.getElementById('doneScreen').classList.add('active');
+  launchConfetti();
+}
+</script>
+</body>
+</html>
